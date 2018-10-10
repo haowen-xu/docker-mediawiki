@@ -1,0 +1,15 @@
+language: python
+sudo: required
+services:
+- docker
+env:
+  global:
+  - secure: MfOXb8Xb649IL5kImPIA53T2EWnkhzDz2HTLwQ60FBmTXkw6EnvGtEVnYYqcvYnIM12rufYbxxdJsKqNC2w6j9P02mcjl6I0+p9aXbc6LBbwqSw50pu8y3sPlXUNBzdWO0e+rXmc7wbIark9bIKtCt2PlLh+iGn8koq28h6MXFi0hUs6y9DEfVC3sek+AxR26u23YW+J+IIghJKYYzaqxm8FGnOQUdy1SAzUgAjBtPLrt8WZC39CIHcrhXRn3+Eg2KmacuYvM4EnsYTkd7DCT5Dv+AL1q8WgBnKo565Co2FwE3I6NbgN/PpicV+4ag2MAqJ1Akid/Q/3sORdwFeinO5svgC+ngyEDySNhW8oEcpMOKhqTn4XHsOgsOSX51RZ+I3mZ0AEuL9qa8SVttnWPMeza9qOAgjRyAqWh4KZ11zVqDw8VBjx5K9FTFa/W91EOYSF6fKjsiWee5qjgupZ+BAShQHEXHBvY84eKBbKHOeYesFMob1QA8HJcFO2stpAVYfQfSVUnnl0aFNsOsDhptJvCFo5LPISt+EurJSMhk+rv/dNSvUwDSbFhTpINTH1zZNN9ibeZ0nFxNBRaXZBskkqfPHUsbnwzZWFhheG60hDf6FA5fiG6BnbpfftSn8VepzEoIP7RgJlwJp4Ft329Ex6fliGGw7TNIJmVcSPPAA=
+  - secure: vA6S4f5AwWc5HNS1ZEaeCeqkQa56k2DVxHfMfM9PcyFOFGOzTZ1bRXjjUbNuy6d5OB42VoV4Blqv6fVMWYevtncKdO4Gr5cRwGlMNc+vBrEAmI45MO/KMC/r/t1S19OZhuRq7tYaQ9YVkUandJ+DSTAgKjLeSeJaXlC/C/1nFuix34XCtPHanIIhoXxTUuiE8HtxROM2nX3TFK0mieMjAbfz1GfPKXicHeQQcuAMUkMU1N1wTmRliapx7RkC+4yf8rMaegbvlKRYtQULPqsZTftQCwOddLNTes9LujrnOuqjeFMu+euSZbzDAngjZYAsQ+cHSy5RBLFGMLZKRLUHl3EAVunzY8fiLymlwvNkArrzNXN4CIU20kz6jniC1Rjy93Gsn8m1UemEyuq2eLhjxkVCp5yTx7Hav+Gj1WvzbhzZggwpnVFAv8Ogs2jHhPoItEK1P113Y6EHritGYCzX2lOD74L7PFeZx2SRFXylH6UA0AZnW8Wr0R1/ykef3pyyp2mMfJfhlvwOXGCQ0vhrph6EJg3ApIPwOptE2GKZU/DdnPtZEtlrA7tFhuS/0jBRclOX4c7sFpsZUoo2M//g8jjuKjKISuOqDHm/b8/6YdOS5PIg9QnRIYXQWio8YR/EY2j3Z2FY7C73tQWITWCxee57MZvbaCWxcEN4sopDLc0=
+install:
+- export REPO="haowenxu/docker-mediawiki"
+- export VERSION="1.29"
+- docker build -t "${REPO}:${VERSION}" "${VERSION}"
+script:
+- docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
+- docker push "${REPO}:${VERSION}"
